@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <title>{metadata.title}</title>
     </head>
     <body className='h-full min-h-screen w-screen'>
-      <div className='w-full max-w-screen-2xl bg-gray-400 m-auto'>{children}</div>
+      <div className='w-full m-auto max-w-screen-2xl '>{children}</div>
     
     </body>
     </html>
