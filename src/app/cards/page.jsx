@@ -8,5 +8,5 @@ export default function pageCards() {
     return <LittleCard name={card.name} image={card.card_images[0]} key={card.id }id={card.id}/>
   })
   return(
-    <div className="flex flex-wrap justify-evenly">{allCards }</div>) 
+    <div className="flex flex-wrap justify-evenly gap-y-5">{allCards }</div>) 
 }

@@ -19,3 +19,29 @@
 body{
   min-width: 384px;;
 }
+p {
+  @apply text-sm ;
+  @apply md:text-base;
+}
+h1{
+  @apply text-xl font-bold md:text-2xl lg:text-3xl lg:py-2
+}
+h2{
+  @apply text-base font-light italic md:text-lg lg:text-xl
+}
+
+.hover-underline {
+  background-image: linear-gradient(#fff 0 0);
+  background-position: left bottom; /* OR left bottom*/
+  background-size: 0% 3px;
+  background-repeat: no-repeat;
+  transition: background-size 0.5s;
+}
+
+.hover-underline:hover {
+  background-size: 100% 3px;
+}
+
+.myTransition{
+  transition: height 0.3s ease;
+}
