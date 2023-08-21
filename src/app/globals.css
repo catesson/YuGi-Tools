@@ -45,3 +45,16 @@ h2{
 .myTransition{
   transition: height 0.3s ease;
 }
+.btnCalculator{
+  @apply border-4;
+  @apply  flex;
+  @apply items-center ;
+  @apply justify-center;
+  @apply  border-red-900 ;
+  @apply rounded-xl;
+  @apply  text-red-900;
+  @apply  text-3xl;
+  @apply  font-bold;
+  @apply  active:bg-red-900;
+  @apply  active:text-white;
+}
