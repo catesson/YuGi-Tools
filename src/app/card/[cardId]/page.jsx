@@ -4,10 +4,8 @@ import { getCard } from "../../../API/callAPI";
 import { UniversalCardInfo } from "./component/UniversalCardInfo";
 import { SpecialCardInfo } from "./component/SpecialCardInfo";
 
-export default function pageCardId({ params, searchParams }) {
-  const card = getCard(params.cardId);
-  
- 
+export default async function pageCardId({ params, searchParams }) {
+  const card = await getCard(params.cardId);
   let color = null;
   
   switch (card.frameType.toLowerCase()) {
