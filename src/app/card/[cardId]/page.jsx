@@ -4,7 +4,7 @@ import { getCard } from "../../../API/callAPI";
 import { UniversalCardInfo } from "./component/UniversalCardInfo";
 import { SpecialCardInfo } from "./component/SpecialCardInfo";
 
-export default async function pageCardId({ params, searchParams }) {
+export default async function pageCardId({ params }) {
   const card = await getCard(params.cardId);
   let color = null;
   
@@ -60,7 +60,7 @@ export default async function pageCardId({ params, searchParams }) {
   return (
     <div className="w-11/12 m-auto flex flex-col gap-6 items-center lg:flex-row h-auto ">
      <UniversalCardInfo card={card} color={color}/>
-    <SpecialCardInfo card={card} />
+     <SpecialCardInfo card={card} />
     </div>
   );
 }

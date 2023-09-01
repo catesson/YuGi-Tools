@@ -1,14 +1,15 @@
 import { mocked } from "../unit/variable";
 import allCard from "../data/data.json";
 
-export async function getAllCard() {
+export async function getAllCard(params) {
   if (mocked) {
     const cards = allCard.map((card) => {
       return card;
     });
     return cards;
   }
-  const response = await fetch("http://localhost:3001/cards", {next: { revalidate: 40}}, {
+  const url = params ? `http://localhost:3001/cards?${params}` : "http://localhost:3001/cards"
+  const response = await fetch(url, {
     
     method: "GET",
     headers: { "Content-Type": "application/json" },
@@ -20,7 +21,6 @@ export async function getAllCard() {
         const cards = await response.json()
         return cards
       }
-
 }
 export async function getCard(id) {
   if (mocked) {
@@ -38,7 +38,6 @@ export async function getCard(id) {
       else {
         
         const card = await response.json()
-        console.log(card)
         return card
       }
 }
