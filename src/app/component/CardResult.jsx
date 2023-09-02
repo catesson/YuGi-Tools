@@ -8,10 +8,11 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 export function CardResult() {
 
   const [cards, setCards] = useState([]);
-  const searchParams = useSearchParams()
-  const [params, setParams] = useState(searchParams.toString())
+  const searchParams = useSearchParams() 
   //récupère les params de l'url
-  
+  const [params, setParams] = useState(searchParams.toString())
+ 
+  //Body qui sera envoyer dans le fetch
   const [body, setBody] = useState({archetype:searchParams.get('archetype')})
  
 
