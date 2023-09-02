@@ -7,21 +7,22 @@ import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 //affiche la liste de toute les carte ou des cartes recherchés
 export function CardResult() {
 
-  const [Cards, setCards] = useState([]);
+  const [cards, setCards] = useState([]);
   const searchParams = useSearchParams()
   const [params, setParams] = useState(searchParams.toString())
   //récupère les params de l'url
   
-  
+  const [body, setBody] = useState({archetype:searchParams.get('archetype')})
  
-  useEffect((params) => {
+
+  useEffect(() => {
     async function allCards(
     ) {
-      const cards = await getAllCard(params);
+      const cards = await getAllCard(params, body);
       setCards(cards)     
     } allCards()
   }, []);
-  const allCards = Cards.map((card) => {
+  const allCards = cards.map((card) => {
     return (
       <LittleCard
         name={card.name}
