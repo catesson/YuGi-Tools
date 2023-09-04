@@ -8,21 +8,23 @@ export async function getAllCard(params, body) {
     });
     return cards;
   }
-  console.log(body)
 
-  const url = params ? `http://localhost:3001/cards?${params}` : "http://localhost:3001/cards"
+console.log(params)
+  const url = params ? `http://localhost:3001/cards?${params.toString()}` : "http://localhost:3001/cards"
   const response = await fetch(url, {
     
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body)
   }, )    
-      if (!response.ok) {s
+      if (!response.ok) {
         console.log("Mauvaise réponse du réseau");
       } 
       else {
-        const cards = await response.json()
-        return cards
+        //contient la liste de toutes les cartes et le nombre maximum de page {cards : [cards], maxPage : page}
+        const JsonResponse = await response.json()
+
+        return JsonResponse
       }
 }
 export async function getCard(id) {
