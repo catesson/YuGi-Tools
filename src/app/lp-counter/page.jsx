@@ -7,8 +7,10 @@ import { BigBtnCalculator } from "./component/BigBtnClaculator";
 import { InputCalculator } from "./component/InputCalculator";
 
 import hotkeys from "hotkeys-js";
+import React from "react";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { document } from "postcss";
 
 export default function Home() {
   //contient les LP des joueur
@@ -23,7 +25,7 @@ export default function Home() {
 
   //event clique sur un bouton avec un nombre
   const handelClickCalculatorBtn = (event, value) => {
-    event.preventDefault();
+    event.preventDefault()
     parseInt(calculatorValue + value) > 99999
       ? setCalculatorValue(99999)
       : setCalculatorValue(parseInt(calculatorValue + value));
@@ -81,62 +83,22 @@ export default function Home() {
       : setCurrentPlayer("Player B");
   };
   const handelClickDel = () => {
-    const newValue = calculatorValue.toString() 
-    if (newValue.length > 1){
-    setCalculatorValue(parseInt(newValue.slice(0, newValue.length - 1)))}
-    else {
-      setCalculatorValue("")
+    const newValue = calculatorValue.toString();
+    if (newValue.length > 1) {
+      setCalculatorValue(parseInt(newValue.slice(0, newValue.length - 1)));
+    } else {
+      setCalculatorValue("");
     }
-  }
+  };
   useEffect(() => {
     hotkeys.unbind(
-      "1,2,3,4,5,6,7,8,9,0,num_0,num_1,num_2,num_3,num_4,num_5,num_6,num_7,num_8,num_9,num_add,num_subtract,enter"
+      "num_add,num_subtract,enter"
     );
 
     hotkeys(
-      "1,2,3,4,5,6,7,8,9,0,num_0,num_1,num_2,num_3,num_4,num_5,num_6,num_7,num_8,num_9,num_add,num_subtract,enter,backspace",
+      "num_add,num_subtract,enter,backspace",
       (event, handeler) => {
         switch (handeler.key) {
-          case "num_1":
-          case "1":
-            handelClickCalculatorBtn(event, "1");
-            break;
-          case "num_2":
-          case "2":
-            handelClickCalculatorBtn(event, "2");
-            break;
-          case "num_3":
-          case "3":
-            handelClickCalculatorBtn(event, "3");
-            break;
-          case "num_4":
-          case "4":
-            handelClickCalculatorBtn(event, "4");
-            break;
-          case "num_5":
-          case "5":
-            handelClickCalculatorBtn(event, "5");
-            break;
-          case "num_6":
-          case "6":
-            handelClickCalculatorBtn(event, "6");
-            break;
-          case "num_7":
-          case "7":
-            handelClickCalculatorBtn(event, "7");
-            break;
-          case "num_8":
-          case "8":
-            handelClickCalculatorBtn(event, "8");
-            break;
-          case "num_9":
-          case "9":
-            handelClickCalculatorBtn(event, "9");
-            break;
-          case "num_0":
-          case "0":
-            handelClickCalculatorBtn(event, "0");
-            break;
           case "num_add":
             handelClickCalculatorSum(event, currentPlayer, calculatorValue);
             break;
@@ -152,9 +114,6 @@ export default function Home() {
               ? setCurrentPlayer("Player B")
               : setCurrentPlayer("Player A");
             break;
-          case "backspace" : 
-          handelClickDel()
-        break;
           default:
             event.preventDefault();
         }
@@ -162,6 +121,7 @@ export default function Home() {
     );
   });
 
+  console.log("refrech");
   // Fonction pour gérer le démontage du composant
 
   return (
@@ -222,55 +182,67 @@ export default function Home() {
           <BtnCalculator
             value={1}
             onClick={(event) => handelClickCalculatorBtn(event, "1")}
+            keyCode={"num_1,1"}
           />
           <BtnCalculator
             value={4}
             onClick={(event) => handelClickCalculatorBtn(event, "4")}
+            keyCode={"num_4,4"}
           />
           <BtnCalculator
             value={7}
             onClick={(event) => handelClickCalculatorBtn(event, "7")}
+            keyCode={"num_7,7"}
           />
           <BtnCalculator
-            value={"0"}
+            value={"0"}        
             onClick={(event) => handelClickCalculatorBtn(event, "0")}
+            keyCode={"num_0,0"}
           />
         </div>
         <div className="flex flex-col gap-1">
           <BtnCalculator
             value={2}
             onClick={(event) => handelClickCalculatorBtn(event, "2")}
+            keyCode={"num_2,2"}
           />
           <BtnCalculator
             value={5}
             onClick={(event) => handelClickCalculatorBtn(event, "5")}
+            keyCode={"num_5,5"}
           />
           <BtnCalculator
             value={8}
             onClick={(event) => handelClickCalculatorBtn(event, "8")}
+            keyCode={"num_8,8"}
           />
           <BtnCalculator
             value={"00"}
             onClick={(event) => handelClickCalculatorBtn(event, "00")}
+            
           />
         </div>
         <div className="flex flex-col gap-1">
           <BtnCalculator
             value={3}
             onClick={(event) => handelClickCalculatorBtn(event, "3")}
+            keyCode={"num_3,3"}
           />
           <BtnCalculator
             value={6}
             onClick={(event) => handelClickCalculatorBtn(event, "6")}
+            keyCode={"num_6,6"}
           />
           <BtnCalculator
             value={9}
             onClick={(event) => handelClickCalculatorBtn(event, "9")}
+            keyCode={"num_9,9"}
           />
           <BtnCalculator
             value={"000"}
             onClick={(event) => handelClickCalculatorBtn(event, "000")}
           />
+          <BtnCalculator value={"Delete"} onClick={() => handelClickDel()}keyCode={"backspace"} />
         </div>
       </div>
       <FlipCoin />

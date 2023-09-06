@@ -58,3 +58,8 @@ h2{
   @apply  active:bg-red-900;
   @apply  active:text-white;
 }
+
+.btnCalculator-active{
+  @apply  bg-red-900;
+  @apply  text-white;
+}
