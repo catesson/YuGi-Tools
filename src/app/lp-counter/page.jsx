@@ -24,7 +24,6 @@ export default function Home() {
   //event clique sur un bouton avec un nombre
   const handelClickCalculatorBtn = (event, value) => {
     event.preventDefault();
-    console.log(value);
     parseInt(calculatorValue + value) > 99999
       ? setCalculatorValue(99999)
       : setCalculatorValue(parseInt(calculatorValue + value));
@@ -81,15 +80,22 @@ export default function Home() {
       ? setCurrentPlayer("")
       : setCurrentPlayer("Player B");
   };
+  const handelClickDel = () => {
+    const newValue = calculatorValue.toString() 
+    if (newValue.length > 1){
+    setCalculatorValue(parseInt(newValue.slice(0, newValue.length - 1)))}
+    else {
+      setCalculatorValue("")
+    }
+  }
   useEffect(() => {
     hotkeys.unbind(
       "1,2,3,4,5,6,7,8,9,0,num_0,num_1,num_2,num_3,num_4,num_5,num_6,num_7,num_8,num_9,num_add,num_subtract,enter"
     );
 
     hotkeys(
-      "1,2,3,4,5,6,7,8,9,0,num_0,num_1,num_2,num_3,num_4,num_5,num_6,num_7,num_8,num_9,num_add,num_subtract,enter",
+      "1,2,3,4,5,6,7,8,9,0,num_0,num_1,num_2,num_3,num_4,num_5,num_6,num_7,num_8,num_9,num_add,num_subtract,enter,backspace",
       (event, handeler) => {
-        console.log(handeler.key);
         switch (handeler.key) {
           case "num_1":
           case "1":
@@ -146,6 +152,9 @@ export default function Home() {
               ? setCurrentPlayer("Player B")
               : setCurrentPlayer("Player A");
             break;
+          case "backspace" : 
+          handelClickDel()
+        break;
           default:
             event.preventDefault();
         }
