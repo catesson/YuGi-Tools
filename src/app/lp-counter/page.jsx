@@ -91,9 +91,7 @@ export default function Home() {
     }
   };
   useEffect(() => {
-    hotkeys.unbind(
-      "num_add,num_subtract,enter"
-    );
+    
 
     hotkeys(
       "num_add,num_subtract,enter,backspace",
@@ -118,6 +116,9 @@ export default function Home() {
             event.preventDefault();
         }
       }
+    );
+    return () => hotkeys.unbind(
+      "num_add,num_subtract,enter"
     );
   });
 

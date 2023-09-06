@@ -3,18 +3,19 @@ import hotkeys from "hotkeys-js";
 
 export function BtnCalculator({ value, onClick, keyCode }) {
   const [active, setActive] = useState(false);
- hotkeys.unbind(keyCode);
+
   useEffect(() => {
-    hotkeys(keyCode, (event, handeler) => {
+    hotkeys(keyCode, (event) => {
         event.preventDefault()
 
         //onClick correspond au handelClickCalculatorBtn de page.jsx
         onClick(event, value)
       setActive(true);
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setActive(false);
         
       }, 100);
+      return () => {clearTimeout(timer); hotkeys.unbind(keyCode)}
     });
   });
   return (
