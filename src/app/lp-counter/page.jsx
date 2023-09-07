@@ -23,9 +23,10 @@ export default function Home() {
   //contient le nombre que l'on souhaite soustraitre ou ajouter
   const [calculatorValue, setCalculatorValue] = useState("");
 
+
   //event clique sur un bouton avec un nombre
   const handelClickCalculatorBtn = (event, value) => {
-    event.preventDefault()
+    event.preventDefault();
     parseInt(calculatorValue + value) > 99999
       ? setCalculatorValue(99999)
       : setCalculatorValue(parseInt(calculatorValue + value));
@@ -91,38 +92,23 @@ export default function Home() {
     }
   };
   useEffect(() => {
-    
-
-    hotkeys(
-      "num_add,num_subtract,enter,backspace",
-      (event, handeler) => {
-        switch (handeler.key) {
-          case "num_add":
-            handelClickCalculatorSum(event, currentPlayer, calculatorValue);
-            break;
-          case "num_subtract":
-            handelClickCalculatorSoustract(
-              event,
-              currentPlayer,
-              calculatorValue
-            );
-            break;
-          case "enter":
-            currentPlayer == "Player A"
-              ? setCurrentPlayer("Player B")
-              : setCurrentPlayer("Player A");
-            break;
-          default:
-            event.preventDefault();
-        }
+    hotkeys("enter,backspace", (event, handeler) => {
+      switch (handeler.key) {
+        
+        case "enter":
+          currentPlayer == "Player A"
+            ? setCurrentPlayer("Player B")
+            : setCurrentPlayer("Player A");
+          break;
+        default:
+          event.preventDefault();
       }
-    );
-    return () => hotkeys.unbind(
-      "num_add,num_subtract,enter"
-    );
+    });
+    return () => hotkeys.unbind(",enter");
   });
 
-  console.log("refrech");
+ 
+  console.log("Page refrech");
   // Fonction pour gérer le démontage du composant
 
   return (
@@ -158,7 +144,7 @@ export default function Home() {
           <InputCalculator value={calculatorValue} />
           <div
             className={`flex flex-row justify-center gap-3 ${
-              calculatorValue && currentPlayer ? "" : "hidden"
+              currentPlayer && calculatorValue ? "" : "hidden"
             }`}
           >
             <BigBtnCalculator
@@ -166,6 +152,7 @@ export default function Home() {
               onClick={(event) =>
                 handelClickCalculatorSum(event, currentPlayer, calculatorValue)
               }
+              keyCode={"num_add"}
             />
             <BigBtnCalculator
               value={"-"}
@@ -176,6 +163,7 @@ export default function Home() {
                   calculatorValue
                 )
               }
+              keyCode={"num_subtract"}
             />
           </div>
         </div>
@@ -184,6 +172,7 @@ export default function Home() {
             value={1}
             onClick={(event) => handelClickCalculatorBtn(event, "1")}
             keyCode={"num_1,1"}
+            
           />
           <BtnCalculator
             value={4}
@@ -196,7 +185,7 @@ export default function Home() {
             keyCode={"num_7,7"}
           />
           <BtnCalculator
-            value={"0"}        
+            value={"0"}
             onClick={(event) => handelClickCalculatorBtn(event, "0")}
             keyCode={"num_0,0"}
           />
@@ -220,7 +209,6 @@ export default function Home() {
           <BtnCalculator
             value={"00"}
             onClick={(event) => handelClickCalculatorBtn(event, "00")}
-            
           />
         </div>
         <div className="flex flex-col gap-1">
@@ -243,7 +231,11 @@ export default function Home() {
             value={"000"}
             onClick={(event) => handelClickCalculatorBtn(event, "000")}
           />
-          <BtnCalculator value={"Delete"} onClick={() => handelClickDel()}keyCode={"backspace"} />
+          <BtnCalculator
+            value={"Delete"}
+            onClick={() => handelClickDel()}
+            keyCode={"backspace"}
+          />
         </div>
       </div>
       <FlipCoin />
