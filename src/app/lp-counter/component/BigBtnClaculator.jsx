@@ -1,25 +1,22 @@
 import { useState, useEffect } from "react";
 
-export function BigBtnCalculator({value, onClick, keyCode}){
-
-
-    console.log("Big btn refrech")
+export function BigBtnCalculator({ value, onClick, keyCode }) {
   useEffect(() => {
-    hotkeys(keyCode, (event) => {
-        event.preventDefault()
+    const handleHotkeyClick = (event) => {
+      event.preventDefault();
+      onClick();
+    };
 
-        //onClick correspond au handelClickCalculatorBtn de page.jsx
-        onClick(event, value)
-        ;
- 
-      
-      
-      return () => {hotkeys.unbind(keyCode)}
-    });
-  });
-    return (
-        <button className="w-24 h-32 border-4 btnCalculator text-7xl" onClick={onClick}>
-            {value}
-        </button>
-    )
+    hotkeys(keyCode, handleHotkeyClick);
+
+    return () => {
+      hotkeys.unbind(keyCode);
+    };
+  }, [onClick, keyCode]);
+
+  return (
+    <button className="w-24 h-32 border-4 btnCalculator text-7xl" onClick={onClick}>
+      {value}
+    </button>
+  );
 }

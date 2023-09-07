@@ -9,8 +9,8 @@ import { InputCalculator } from "./component/InputCalculator";
 import hotkeys from "hotkeys-js";
 import React from "react";
 
-import { useEffect, useState, useRef } from "react";
-import { document } from "postcss";
+import { useEffect, useState  } from "react";
+
 
 export default function Home() {
   //contient les LP des joueur
@@ -23,6 +23,8 @@ export default function Home() {
   //contient le nombre que l'on souhaite soustraitre ou ajouter
   const [calculatorValue, setCalculatorValue] = useState("");
 
+  
+console.log(calculatorValue)
 
   //event clique sur un bouton avec un nombre
   const handelClickCalculatorBtn = (event, value) => {
@@ -33,8 +35,8 @@ export default function Home() {
   };
 
   //clique sur le bouton + Pour ajouter le valeur au point de vie du joueur selectionné
-  const handelClickCalculatorSum = (event, player, value) => {
-    event.preventDefault();
+  const handelClickCalculatorSum = ( player, value) => {
+ 
 
     try {
       if (player === "Player A") {
@@ -53,8 +55,8 @@ export default function Home() {
     }
   };
   //clique sur le bouton - Pour soustraire le valeur au point de vie du joueur selectionné
-  const handelClickCalculatorSoustract = (event, player, value) => {
-    event.preventDefault();
+  const handelClickCalculatorSoustract = ( player, value) => {
+
     try {
       if (player === "Player A") {
         setLpPlayerA(lpPlayerA - value);
@@ -112,6 +114,7 @@ export default function Home() {
   // Fonction pour gérer le démontage du composant
 
   return (
+    
     <div className="flex flex-col items-center">
       <div className="flex flex-row justify-center gap-5">
         <LifePoint
@@ -144,13 +147,13 @@ export default function Home() {
           <InputCalculator value={calculatorValue} />
           <div
             className={`flex flex-row justify-center gap-3 ${
-              currentPlayer && calculatorValue ? "" : "hidden"
+              currentPlayer && calculatorValue ? "" : ""
             }`}
           >
             <BigBtnCalculator
               value={"+"}
               onClick={(event) =>
-                handelClickCalculatorSum(event, currentPlayer, calculatorValue)
+                handelClickCalculatorSum(currentPlayer, calculatorValue)
               }
               keyCode={"num_add"}
             />
@@ -158,7 +161,7 @@ export default function Home() {
               value={"-"}
               onClick={(event) =>
                 handelClickCalculatorSoustract(
-                  event,
+         
                   currentPlayer,
                   calculatorValue
                 )
@@ -251,5 +254,6 @@ export default function Home() {
         Restart
       </button>
     </div>
+
   );
 }
