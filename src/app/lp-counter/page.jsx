@@ -27,8 +27,7 @@ export default function Home() {
 console.log(calculatorValue)
 
   //event clique sur un bouton avec un nombre
-  const handelClickCalculatorBtn = (event, value) => {
-    event.preventDefault();
+  const handelClickCalculatorBtn = (value) => {
     parseInt(calculatorValue + value) > 99999
       ? setCalculatorValue(99999)
       : setCalculatorValue(parseInt(calculatorValue + value));
@@ -94,13 +93,17 @@ console.log(calculatorValue)
     }
   };
   useEffect(() => {
-    hotkeys("enter,backspace", (event, handeler) => {
+    hotkeys("left,right, down", (event, handeler) => {
       switch (handeler.key) {
         
-        case "enter":
-          currentPlayer == "Player A"
-            ? setCurrentPlayer("Player B")
-            : setCurrentPlayer("Player A");
+        case "left":
+setCurrentPlayer("Player A");
+          break;
+          case "right":
+setCurrentPlayer("Player B");
+          break;
+          case "down":
+setCurrentPlayer("");
           break;
         default:
           event.preventDefault();
@@ -109,9 +112,7 @@ console.log(calculatorValue)
     return () => hotkeys.unbind(",enter");
   });
 
- 
-  console.log("Page refrech");
-  // Fonction pour gérer le démontage du composant
+
 
   return (
     
@@ -173,66 +174,66 @@ console.log(calculatorValue)
         <div className="flex flex-col gap-1">
           <BtnCalculator
             value={1}
-            onClick={(event) => handelClickCalculatorBtn(event, "1")}
+            onClick={(event) => handelClickCalculatorBtn("1")}
             keyCode={"num_1,1"}
             
           />
           <BtnCalculator
             value={4}
-            onClick={(event) => handelClickCalculatorBtn(event, "4")}
+            onClick={(event) => handelClickCalculatorBtn("4")}
             keyCode={"num_4,4"}
           />
           <BtnCalculator
             value={7}
-            onClick={(event) => handelClickCalculatorBtn(event, "7")}
+            onClick={(event) => handelClickCalculatorBtn("7")}
             keyCode={"num_7,7"}
           />
           <BtnCalculator
             value={"0"}
-            onClick={(event) => handelClickCalculatorBtn(event, "0")}
+            onClick={(event) => handelClickCalculatorBtn("0")}
             keyCode={"num_0,0"}
           />
         </div>
         <div className="flex flex-col gap-1">
           <BtnCalculator
             value={2}
-            onClick={(event) => handelClickCalculatorBtn(event, "2")}
+            onClick={(event) => handelClickCalculatorBtn("2")}
             keyCode={"num_2,2"}
           />
           <BtnCalculator
             value={5}
-            onClick={(event) => handelClickCalculatorBtn(event, "5")}
+            onClick={(event) => handelClickCalculatorBtn("5")}
             keyCode={"num_5,5"}
           />
           <BtnCalculator
             value={8}
-            onClick={(event) => handelClickCalculatorBtn(event, "8")}
+            onClick={(event) => handelClickCalculatorBtn("8")}
             keyCode={"num_8,8"}
           />
           <BtnCalculator
             value={"00"}
-            onClick={(event) => handelClickCalculatorBtn(event, "00")}
+            onClick={(event) => handelClickCalculatorBtn("00")}
           />
         </div>
         <div className="flex flex-col gap-1">
           <BtnCalculator
             value={3}
-            onClick={(event) => handelClickCalculatorBtn(event, "3")}
+            onClick={(event) => handelClickCalculatorBtn("3")}
             keyCode={"num_3,3"}
           />
           <BtnCalculator
             value={6}
-            onClick={(event) => handelClickCalculatorBtn(event, "6")}
+            onClick={(event) => handelClickCalculatorBtn("6")}
             keyCode={"num_6,6"}
           />
           <BtnCalculator
             value={9}
-            onClick={(event) => handelClickCalculatorBtn(event, "9")}
+            onClick={(event) => handelClickCalculatorBtn("9")}
             keyCode={"num_9,9"}
           />
           <BtnCalculator
             value={"000"}
-            onClick={(event) => handelClickCalculatorBtn(event, "000")}
+            onClick={(event) => handelClickCalculatorBtn("000")}
           />
           <BtnCalculator
             value={"Delete"}

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import hotkeys from "hotkeys-js";
+import { Actor } from "next/font/google";
 
 export function BtnCalculator({ value, onClick, keyCode }) {
   const [active, setActive] = useState(false);
@@ -9,7 +10,7 @@ export function BtnCalculator({ value, onClick, keyCode }) {
         event.preventDefault()
 
         //onClick correspond au handelClickCalculatorBtn de page.jsx
-        onClick(event, value)
+        onClick()
       setActive(true);
       const timer = setTimeout(() => {
         setActive(false);
@@ -20,11 +21,10 @@ export function BtnCalculator({ value, onClick, keyCode }) {
   });
   return (
     <button
-      className={`btnCalculator w-16 h-16 ${
-        active ? "btnCalculator-active" : ""
-      }`}
+      className={`btnCalculator w-16 h-16 ${ active ? "btnCalculator-active" : ""}` }
       //onClick correspond au handelClickCalculatorBtn de page.jsx
       onClick={onClick}
+      
     >
       {value}
     </button>
