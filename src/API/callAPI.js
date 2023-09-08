@@ -1,7 +1,7 @@
 import { mocked } from "../unit/variable";
 import allCard from "../data/data.json";
 
-export async function getAllCard(params, body) {
+export async function getAllCard(params) {
   if (mocked) {
     const cards = allCard.map((card) => {
       return card;
@@ -15,7 +15,6 @@ console.log(params)
     
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body)
   }, )    
       if (!response.ok) {
         console.log("Mauvaise réponse du réseau");
