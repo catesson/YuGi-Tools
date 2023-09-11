@@ -18,10 +18,13 @@ export async function getAllCard(params) {
       headers: { "Content-Type": "application/json" },
     });
     if (!response.ok) {
-      console.log("Mauvaise réponse du réseau");
+      window.alert("Mauvaise réponse du réseau");
+      
+      return 
     } else {
       //contient la liste de toutes les cartes et le nombre maximum de page {cards : [cards], maxPage : page}
       const JsonResponse = await response.json();
+      console.log(JsonResponse)
 
       return JsonResponse;
     }
