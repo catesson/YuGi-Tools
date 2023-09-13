@@ -10,6 +10,7 @@ export const metadata = {
   description: 'Constructeur de deck et gestionnaire de collection',
 }
 
+
 export default function RootLayout({ children }) {
   return (
     <html lang="fr">
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
     </head>
     <body className='h-full min-h-screen w-screen'>
       <Header />
+ 
       <div className='w-full m-auto max-w-screen-2xl mt-5 '>{children}</div>
     
     </body>

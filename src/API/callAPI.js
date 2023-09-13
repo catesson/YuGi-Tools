@@ -24,7 +24,6 @@ export async function getAllCard(params) {
     } else {
       //contient la liste de toutes les cartes et le nombre maximum de page {cards : [cards], maxPage : page}
       const JsonResponse = await response.json();
-      console.log(JsonResponse)
 
       return JsonResponse;
     }

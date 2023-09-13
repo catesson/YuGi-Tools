@@ -63,3 +63,10 @@ h2{
   @apply  bg-red-900;
   @apply  text-white;
 }
+.loading{
+  @apply fixed;
+  @apply w-9;
+  @apply h-9;
+  @apply bg-slate-950
+
+}

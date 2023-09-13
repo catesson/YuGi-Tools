@@ -26,14 +26,15 @@ export function CardResult() {
 
   return (
     <div className="flex justify-center flex-col">
+
       <div className="flex flex-wrap justify-evenly gap-y-5">{cards}</div>
       <Paginate />
     </div>
   );}
   else{
-    return (<div className="flex justify-center flex-col">
-    <div className="flex flex-wrap justify-evenly gap-y-5"><p>Find no cards</p></div>
+  //   return (<div className="flex justify-center flex-col">
+  //   <div className="flex flex-wrap justify-evenly gap-y-5"><p>Find no cards</p></div>
 
-  </div>)
+  // </div>)
   }
 }

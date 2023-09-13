@@ -23,9 +23,6 @@ export default function Home() {
   //contient le nombre que l'on souhaite soustraitre ou ajouter
   const [calculatorValue, setCalculatorValue] = useState("");
 
-  
-console.log(calculatorValue)
-
   //event clique sur un bouton avec un nombre
   const handelClickCalculatorBtn = (value) => {
     parseInt(calculatorValue + value) > 99999
@@ -93,6 +90,7 @@ console.log(calculatorValue)
     }
   };
   useEffect(() => {
+    console.log('rerender')
     hotkeys("left,right, down", (event, handeler) => {
       switch (handeler.key) {
         
@@ -110,13 +108,13 @@ setCurrentPlayer("");
       }
     });
     return () => hotkeys.unbind(",enter");
-  });
+  }, []);
 
 
 
   return (
-    
-    <div className="flex flex-col items-center">
+   
+     <div className="flex flex-col items-center">
       <div className="flex flex-row justify-center gap-5">
         <LifePoint
           onClick={() => {
@@ -254,7 +252,7 @@ setCurrentPlayer("");
       >
         Restart
       </button>
-    </div>
+    </div> 
 
   );
 }
