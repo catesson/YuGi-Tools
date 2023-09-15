@@ -37,12 +37,14 @@ export function SearchForm() {
       <input
         type=""
         placeholder="Name"
+        name="searchCards"
         value={searchName}
         onChange={handleNameChange}
       />
       <input
         type="number"
         placeholder="Level"
+        name="LV"
         min={0}
         max={12}
         value={searchLevelRank}
@@ -57,6 +59,7 @@ export function SearchForm() {
      
 
       <button
+        name="submitSearchForm"
         onClick={(event) => {
           event.preventDefault();
           params.set("name", searchName);

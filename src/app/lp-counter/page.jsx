@@ -31,7 +31,7 @@ export default function Home() {
   };
 
   //clique sur le bouton + Pour ajouter le valeur au point de vie du joueur selectionné
-  const handelClickCalculatorSum = ( player, value) => {
+  const handelClickCalculatorSum = (player, value) => {
  
 
     try {
