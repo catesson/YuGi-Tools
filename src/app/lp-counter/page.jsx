@@ -143,7 +143,7 @@ setCurrentPlayer("");
       </div>
       <div className="flex flex-row gap-x-2">
         <div className="flex flex-col gap-1">
-          <InputCalculator value={calculatorValue} />
+          <InputCalculator  value={calculatorValue} />
           <div
             className={`flex flex-row justify-center gap-3 ${
               currentPlayer && calculatorValue ? "" : ""

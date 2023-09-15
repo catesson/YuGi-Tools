@@ -54,7 +54,7 @@ export function SearchForm() {
         <option value="" ></option>
         {SelectMonsterAttribute}
       </select>
-  <select name="" id="" onChange={handleTypeChange}>
+  <select name="Race" id="" onChange={handleTypeChange}>
     <option value="" placeholder="type" ></option>{SelectMonsterRace}</select> 
      
 

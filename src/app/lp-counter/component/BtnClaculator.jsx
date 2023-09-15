@@ -21,6 +21,7 @@ export function BtnCalculator({ value, onClick, keyCode }) {
   });
   return (
     <button
+    data-test-id={"BtnCalculator"+value}
       className={`btnCalculator w-16 h-16 ${ active ? "btnCalculator-active" : ""}` }
       //onClick correspond au handelClickCalculatorBtn de page.jsx
       onClick={onClick}
