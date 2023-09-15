@@ -15,7 +15,7 @@ export function SearchContextProvider({ children }) {
   const searchParams = useSearchParams();
   //récupère les params de l'url
   const [params, setParams] = useState(new URLSearchParams(searchParams));
-  const [loading, setLoading] = useState("loading")
+  const [loading, setLoading] = useState("")
 
   //contient les filtre spécifique au monstre (race, attribute)
   const [race, setRace] = useState([]);
@@ -64,8 +64,9 @@ export function SearchContextProvider({ children }) {
         search,
       }}
     >
+    
+      {children}  
       <Loader className={loading}/>
-      {children}
     </SearchContext.Provider>
   );
 }

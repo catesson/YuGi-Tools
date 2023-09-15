@@ -26,7 +26,7 @@ export function CardResult() {
 
   return (
     <div className="flex justify-center flex-col">
-
+      
       <div className="flex flex-wrap justify-evenly gap-y-5">{cards}</div>
       <Paginate />
     </div>

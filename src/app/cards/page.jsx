@@ -5,7 +5,7 @@ import { SearchContextProvider } from "../component/Search/SearchContext";
 
 export default function PageCards() {
   return (
-    <div>
+    <div className="flex flex-col">
       <SearchContextProvider>
         <div>
           <SearchForm></SearchForm>
