@@ -58,7 +58,7 @@ export default async function pageCardId({ params }) {
   
 
   return (
-    <div className="w-11/12 m-auto flex flex-col gap-6 items-center lg:flex-row h-auto ">
+    <div className="w-11/12 m-auto flex flex-col gap-6 items-center lg:flex-row h-auto mt-5 ">
      <UniversalCardInfo card={card} color={color}/>
      <SpecialCardInfo card={card} />
     </div>

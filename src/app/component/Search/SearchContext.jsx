@@ -2,9 +2,8 @@
 import { useEffect, useState, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { createContext } from "react";
-import { getAllCard, getMonsterFilter } from "@/API/callAPI";
+import { getAllCard, getFilter } from "@/API/callAPI";
 import { Loader } from "../Loader";
-
 
 export const SearchContext = createContext(null);
 
@@ -15,41 +14,40 @@ export function SearchContextProvider({ children }) {
   const searchParams = useSearchParams();
   //récupère les params de l'url
   const [params, setParams] = useState(new URLSearchParams(searchParams));
-  const [loading, setLoading] = useState("")
+  const [loading, setLoading] = useState("");
   //contient les filtre spécifique au monstre (race, attribute)
-  const [race, setRace] = useState([]);
+  const [monsterRace, setRace] = useState([]);
   const [attribute, setAttribute] = useState([]);
+  const [magicRace, setMagicRace] = useState([])
+  const [trapRace, setTrapRace] = useState([])
   //intéroge la base de données pour récupérer les cartes
   const search = useCallback(async () => {
-    
     try {
-   
       const { cards, maxPage } = await getAllCard(params);
-      if (race.length == 0 || attribute.length == 0) {
-        
-        const { race, attribute } = await getMonsterFilter();
-        
-        setAttribute(attribute);
-
-        setRace(race)
-      }
       
-      setAllCards(cards);   
-      setLoading('hidden')
+      if (monsterRace.length == 0 || attribute.length == 0) {
+
+        const { monsterRace, attribute, magicRace, trapRace } = await getFilter() ;
+       setMagicRace(magicRace);
+        setTrapRace(trapRace);
+        setAttribute(attribute);
+        setRace(monsterRace);
+      }
+
+      setAllCards(cards);
+      setLoading("hidden");
       setMaxPage(maxPage);
       if (params.get("page")) {
         setCurrentPage(params.get("page"));
       }
     } catch (error) {
       setAllCards([]);
-      setLoading('hidden')
+      setLoading("hidden");
     }
   }, [params]);
-  useEffect((params) => {
-   
 
+  useEffect((params) => {
     search(params);
-    
   }, []);
   return (
     <SearchContext.Provider
@@ -58,14 +56,15 @@ export function SearchContextProvider({ children }) {
         params,
         maxPage,
         currentPage,
-        race,
+        monsterRace,
         attribute,
+        magicRace,
+        trapRace,
         search,
       }}
     >
-    
-      {children}  
-      <Loader className={loading}/>
+      {children}
+      <Loader className={loading} />
     </SearchContext.Provider>
   );
 }

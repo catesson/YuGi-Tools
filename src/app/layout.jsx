@@ -22,7 +22,7 @@ export default function RootLayout({ children }) {
     <body className='h-full min-h-screen w-screen'>
       <Header />
  
-      <div className='w-full m-auto max-w-screen-2xl mt-5 '>{children}</div>
+      <div className='w-full m-auto max-w-screen-2xl'>{children}</div>
     
     </body>
     </html>

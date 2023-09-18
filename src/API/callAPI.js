@@ -3,12 +3,14 @@ import allCard from "../data/data.json";
 
 export async function getAllCard(params) {
   if (mocked) {
+    const url = params
     const cards = allCard.map((card) => {
       
             return card;
-    })
-
-    return cards;
+    }).slice(0,30)
+    const maxPage = 12
+console.log(cards)
+    return {cards, maxPage};
   } else {
     const url = params
       ? `http://localhost:3001/cards?${params.toString()}`
@@ -30,8 +32,13 @@ export async function getAllCard(params) {
   }
 }
 
-export async function getMonsterFilter() {
-  const response = await fetch("http://localhost:3001/cards/monster_filter", {
+export async function getFilter() {
+  if (mocked) {
+    const attribute = ['fire', 'water']
+    const race = ['warrior', "fairy"]
+    return {attribute, race}
+  } 
+  const response = await fetch("http://localhost:3001/cards/filter", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
@@ -46,6 +53,9 @@ export async function getMonsterFilter() {
     return JsonResponse;
   }
 }
+
+
+
 export async function getCard(id) {
   if (mocked) {
     const card = allCard.find((card) => card.id == id);

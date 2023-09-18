@@ -10,6 +10,7 @@ import { Paginate } from "./paginate";
 export function CardResult() {
   
   const {allCards} = useContext(SearchContext)
+  console.log(allCards)
   if (allCards.length != 0){//affiche toutes les carte retourné
   const cards = allCards !== [] ? allCards.map((card) => {
     return (

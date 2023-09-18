@@ -1,76 +1,89 @@
 "use client";
-
+import { useForm } from "react-hook-form";
+import { MonsterSearch } from "./MonsterSearch";
+import { MagicSearch } from "./MagicSearch";
 import { SearchContext } from "./SearchContext";
 import { useContext, useState } from "react";
+import "@/app/styles/form.css";
 
 export function SearchForm() {
-  const { search, params, race, attribute } = useContext(SearchContext);
+  const { search, params } = useContext(SearchContext);
   const [searchName, setSearchName] = useState("");
-  const [searchLevelRank, setSearchLevelRank] = useState("");
-  const [searchAttribute, setSearchAttribute] = useState("");
-  const [searchType, setSearchType] = useState("");
+  const [searchFramType, setSearchFramType] = useState("");
 
-
-  const handleNameChange = (event) => {
-    setSearchName(event.target.value); // Met à jour l'état local avec la valeur de l'élément <input>
+  const {
+    register,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (event) => {
+    event.preventDefault();
+    params.set("name", searchName);
+    search();
   };
-  const handleLevelRankChange = (event) => {
-    setSearchLevelRank(event.target.value); // Met à jour l'état local avec la valeur de l'élément <input>
-  };
-  const handleAttributeChange = (event) => {
-    setSearchAttribute(event.target.value); // Met à jour l'état local avec la valeur de l'élément <input>
-  };
-  const handleTypeChange = (event) => {
-    setSearchType(event.target.value); // Met à jour l'état local avec la valeur de l'élément <input>
-  };
-
-  const SelectMonsterAttribute = attribute.map((element, index) => {
-    return (<option key={index} value={`${element._id}`}>{element._id}</option>)
-  })
-  const SelectMonsterRace = race.map((element, index) => {
-    return (<option key={index} value={`${element._id}`}>{element._id}</option>)
-  })
-
   return (
-    <form action="">
-      <label htmlFor="name">name</label>
+    <form className="flex flex-row flex-wrap searchForm justify-center">
       <input
-        type=""
-        placeholder="Name"
-        name="searchCards"
-        value={searchName}
-        onChange={handleNameChange}
+        {...register("name")}
+        placeholder="Your search"
+        onChange={(event) => setSearchName(event.target.value)}
       />
-      <input
-        type="number"
-        placeholder="Level"
-        name="LV"
-        min={0}
-        max={12}
-        value={searchLevelRank}
-        onChange={handleLevelRankChange}
-      />
-      <select name="Attribute" id="" placeholder="Attribute"onChange={handleAttributeChange}>
-        <option value="" ></option>
-        {SelectMonsterAttribute}
-      </select>
-  <select name="Race" id="" onChange={handleTypeChange}>
-    <option value="" placeholder="type" ></option>{SelectMonsterRace}</select> 
-     
 
-      <button
-        name="submitSearchForm"
+      <input
+        {...register("checkbox")}
+        type="radio"
+        value="Monster"
         onClick={(event) => {
-          event.preventDefault();
-          params.set("name", searchName);
-          params.set("level", searchLevelRank);
-          params.set("attribute", searchAttribute);
-          params.set("race", searchType);
-          search();
+          if (searchFramType == "Monster") {
+            event.target.checked = false;
+            setSearchFramType("");
+            params.set("level", "");
+            params.set("attribute", "");
+            params.set("race", "");
+          } else {
+            setSearchFramType(event.target.value);
+          }
         }}
+      />
+      <input
+        {...register("checkbox")}
+        type="radio"
+        value="Spell"
+        onClick={(event) => {
+          if (searchFramType == "Spell") {
+            event.target.checked = false;
+            setSearchFramType("");
+          } else {
+            setSearchFramType(event.target.value);
+          }
+        }}
+      />
+      <input
+        {...register("checkbox")}
+        type="radio"
+        value="Trap"
+        onClick={(event) => {
+          if (searchFramType == "Trap") {
+            event.target.checked = false;
+            setSearchFramType("");
+          } else {
+            setSearchFramType(event.target.value);
+          }
+        }}
+      />
+      
+      <button
+        type="submit"
+        onClick={onSubmit}
+        className={searchFramType == "" ? "" : "hidden"}
       >
-        Submit
+        submit
       </button>
+      <MonsterSearch
+        className={searchFramType == "Monster" ? "" : "hidden"}
+        searchName={searchName}
+      />
+      <MagicSearch className={searchFramType == "Spell" ? "" : "hidden"}
+        searchName={searchName} />
     </form>
   );
 }
