@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: modifier-la-variable
-        run: node scripts/modifyMockedBoolean.js
+        run: node unit/modifyMockedBoolean.js
       - name: Cypress run
         # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v6
