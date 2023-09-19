@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.searchForm input, .searchForm select {
+    @apply text-red-900;
+    @apply p-2;
+    @apply border-red-900;
+    @apply border-solid;
+    @apply border-2;
+    @apply rounded-xl;
+    min-width: 150px;
+  }
+  .searchForm #name{
+    @apply w-64;
+    @apply sm:w-2/3;
+  }
+  .magicSearch, .monsterSearch, .trapSearch{
+    @apply flex;
+    @apply flex-wrap;
+    @apply justify-between;
+    @apply w-full
+  }
+  .magicSearch.hidden, .monsterSearch.hidden, .trapSearch.hidden{
+    display:none;
+  }
+
+  .searchForm button[type=submit]{
+   @apply bg-red-900;
+    @apply text-white;
+    @apply -ml-4;
+    @apply px-6;
+    @apply rounded-xl;
+  }
+  
