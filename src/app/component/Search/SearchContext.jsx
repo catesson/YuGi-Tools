@@ -18,28 +18,27 @@ export function SearchContextProvider({ children }) {
   //contient les filtre spécifique au monstre (race, attribute)
   const [monsterRace, setRace] = useState([]);
   const [attribute, setAttribute] = useState([]);
-  const [magicRace, setMagicRace] = useState([])
-  const [trapRace, setTrapRace] = useState([])
+  const [magicRace, setMagicRace] = useState([]);
+  const [trapRace, setTrapRace] = useState([]);
   //intéroge la base de données pour récupérer les cartes
   const search = useCallback(async () => {
     try {
       const { cards, maxPage } = await getAllCard(params);
-      
-      if (monsterRace.length == 0 || attribute.length == 0) {
 
-        const { monsterRace, attribute, magicRace, trapRace } = await getFilter() ;
-       setMagicRace(magicRace);
+      //charge les filtre de recherche si ces dernier ne sont pas déja chargé
+      if (monsterRace.length == 0 || attribute.length == 0) {
+        console.log('je charge')
+        const { monsterRace, attribute, magicRace, trapRace } = await getFilter();
+        setMagicRace(magicRace);
         setTrapRace(trapRace);
         setAttribute(attribute);
         setRace(monsterRace);
       }
-
       setAllCards(cards);
       setLoading("hidden");
       setMaxPage(maxPage);
-      if (params.get("page")) {
-        setCurrentPage(params.get("page"));
-      }
+
+      setCurrentPage(params.get("page") ? params.get("page") : 1);
     } catch (error) {
       setAllCards([]);
       setLoading("hidden");
@@ -54,6 +53,7 @@ export function SearchContextProvider({ children }) {
       value={{
         allCards,
         params,
+        setParams,
         maxPage,
         currentPage,
         monsterRace,

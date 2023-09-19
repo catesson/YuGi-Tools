@@ -15,6 +15,7 @@ console.log(cards)
     const url = params
       ? `http://localhost:3001/cards?${params.toString()}`
       : "http://localhost:3001/cards";
+      console.log(url)
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

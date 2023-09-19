@@ -10,7 +10,6 @@ import { Paginate } from "./paginate";
 export function CardResult() {
   
   const {allCards} = useContext(SearchContext)
-  console.log(allCards)
   if (allCards.length != 0){//affiche toutes les carte retourné
   const cards = allCards !== [] ? allCards.map((card) => {
     return (
@@ -22,8 +21,7 @@ export function CardResult() {
       />
     );
   }) : <p>test</p>;
-  
-  console.log(cards)
+
 
   return (
     <div className="flex justify-center flex-col">

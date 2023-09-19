@@ -64,7 +64,3 @@ h2{
   @apply  text-white;
 }
 
-.searchForm input{
-  @apply  text-white; 
-  @apply overflow-hidden;
-}
