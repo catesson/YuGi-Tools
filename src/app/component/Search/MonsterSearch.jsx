@@ -21,12 +21,9 @@ export function MonsterSearch({className, searchName}) {
         return (<option key={index} value={`${element._id}`}>{element._id}</option>)
       })
       const onSubmit = (event) => {
+        
         event.preventDefault()
-        params.set("name", searchName);
-        params.set("type", "monster")
-        params.set("level", searchLevelRank);
-        params.set("attribute", searchAttribute);
-        params.set("race", searchRace);
+       
         search();
                
       };
