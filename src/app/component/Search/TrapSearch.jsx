@@ -4,35 +4,23 @@ import { useContext, useState } from "react";
 import { SearchContext } from "./SearchContext";
 
 
-export function TrapSearch({className, searchName}) {
-    const {params, search, trapRace} = useContext(SearchContext)
-    const [searchRace, setSearchRace] = useState("")
+export function TrapSearch({className, register}) {
+    const { trapRace} = useContext(SearchContext)
+
     const SelectTrapRace = trapRace.map((element, index) => {
       return (<option key={index} value={`${element._id}`}>{element._id}</option>)
     })
-    const {
-        register,
-        formState: { errors },
-      } = useForm()
+    
      
-      const onSubmit = (event) => {
-        event.preventDefault()
-        params.set("name", searchName);
-        params.set("race", searchRace);
-        params.set("frameType", "trap")
-        search();
-      };
   return (
     <div className={`${className} trapSearch`}>
       <select
-        {...register("trapRace")}
-        id=""
-        onChange={(event) => setSearchRace(event.target.value)}
+        {...register("race.Trap")}
       >
         <option value=""></option>
         {SelectTrapRace}
       </select>{" "}
-      <button type="submit" onClick={onSubmit}>Submit</button>
+      <button type="submit">Submit</button>
     </div>
   );
 }

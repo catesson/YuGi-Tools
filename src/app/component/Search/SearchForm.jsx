@@ -9,101 +9,110 @@ import "@/app/styles/form.css";
 
 export function SearchForm() {
   const { search, params } = useContext(SearchContext);
-  const [searchName, setSearchName] = useState("");
   const [searchFramType, setSearchFramType] = useState("");
 
-   const resetParams = () => {
-    const keyParams = []
-    //reset des paramètre en 2 boucle car ne supprime que le premier params si je le fais dans la même boucle. 
+  const resetParams = () => {
+    const keyParams = [];
+    //reset des paramètre en 2 boucle car ne supprime que le premier params si je le fais dans la même boucle.
     for (const key of params.keys()) {
-      keyParams.push(key)
+      keyParams.push(key);
     }
-    for(const key of keyParams){
-      params.delete(key)
+    for (const key of keyParams) {
+      params.delete(key);
     }
-   }
+  };
   const {
     register,
+    handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (event) => {
-    
+
+  const onSubmit = (data) => {
     event.preventDefault();
-    params.set("name", searchName);
+    console.log(data);
+    console.log(searchFramType);
+
+    //pour chaque données dans les champ du formulaires j'ajoute des params
+    for (const cle in data) {
+      if (data.hasOwnProperty(cle)) {
+        if (cle != "race") {
+          params.set(cle, data[cle]);
+        } else {
+          const { race } = { ...data };
+          
+          params.set(cle, race[searchFramType] ? race[searchFramType] : "" );
+        }
+      }
+    }
+    params.set("frameType", searchFramType)
     search();
   };
   return (
-    <form className="flex flex-col gap-y-3 flex-wrap searchForm justify-center w-full sm:w-2/3">
+    <form
+      className="flex flex-col gap-y-3 flex-wrap searchForm justify-center w-full sm:w-2/3"
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <div className="flex flex-row justify-center ">
-        <input
-          id="name"
-          {...register("name")}
-          placeholder="Your search"
-          onChange={(event) => setSearchName(event.target.value)}
-        />
-        <button
-          type="submit"
-          onClick={onSubmit}
-          className={searchFramType == "" ? "" : "hidden"}
-        >
+        <input id="name" {...register("name")} placeholder="Your search" />
+        <button type="submit" className={searchFramType == "" ? "" : "hidden"}>
           submit
         </button>
       </div>
       <div className="flex flex-row justify-between w-full">
-        <button onClick={(event) => {
-          
-          event.preventDefault()
-          resetParams()
-            if (searchFramType == "Monster") {
-              setSearchFramType("");
-           
-              
-            } else {
-              setSearchFramType("Monster");
-            }}}>
-          Monster
-        </button>
-  
         <button
           onClick={(event) => {
+            event.preventDefault();
 
-            event.preventDefault()   
-            resetParams()
+            resetParams();
+            if (searchFramType == "Monster") {
+              setSearchFramType("");
+            } else {
+              setSearchFramType("Monster");
+            }
+          }}
+        >
+          Monster
+        </button>
+
+        <button
+          onClick={(event) => {
+            event.preventDefault();
+            resetParams();
             if (searchFramType == "Spell") {
               setSearchFramType("");
             } else {
               setSearchFramType("Spell");
             }
           }}
-        >Spell </button>
+        >
+          Spell{" "}
+        </button>
         <button
-          
           onClick={(event) => {
-            event.preventDefault()
-            resetParams()
+            event.preventDefault();
+            resetParams();
             if (searchFramType == "Trap") {
               setSearchFramType("");
             } else {
               setSearchFramType("Trap");
             }
           }}
-        >Trap </button>
+        >
+          Trap{" "}
+        </button>
       </div>
-      
-        <MonsterSearch
+
+      {/* <MonsterSearch
           className={searchFramType == "Monster" ? "" : "hidden"}
-          searchName={searchName}
-        />
-        <MagicSearch
-          className={searchFramType == "Spell" ? "" : "hidden"}
-          searchName={searchName}
-        />
-        <TrapSearch
-          className={searchFramType == "Trap" ? "" : "hidden"}
-          searchName={searchName}
-
-        />
-
+        />*/}
+      <MagicSearch
+        className={searchFramType == "Spell" ? "" : "hidden"}
+        register={register}
+      />
+      <TrapSearch
+        className={searchFramType == "Trap" ? "" : "hidden"}
+        register={register}
+      />
     </form>
   );
 }
