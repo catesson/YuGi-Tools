@@ -12,7 +12,7 @@ export function MagicSearch({className, register}) {
   return (
     <div className={`${className} magicSearch`}>
       <select
-        {...register("race.Spell")}
+        {...register("Spell.race")}
       >
         <option value=""></option>
         {SelectMagicRace}

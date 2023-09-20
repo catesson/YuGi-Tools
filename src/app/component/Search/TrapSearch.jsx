@@ -15,7 +15,7 @@ export function TrapSearch({className, register}) {
   return (
     <div className={`${className} trapSearch`}>
       <select
-        {...register("race.Trap")}
+        {...register("Trap.race")}
       >
         <option value=""></option>
         {SelectTrapRace}

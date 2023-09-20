@@ -20,10 +20,10 @@ export function MonsterSearch({className, register}) {
       <input
         type="number"
         placeholder="Level"
-        {...register("LV", { min: 0, max: 12 })}
+        {...register("Monster.LV", { min: 0, max: 12 })}
       />
       <select
-        {...register("attribute")}
+        {...register("Monster.attribute")}
         id=""
         placeholder="Attribute"
       >
@@ -31,7 +31,7 @@ export function MonsterSearch({className, register}) {
         {SelectMonsterAttribute}
       </select>
       <select
-        {...register("race")}
+        {...register("Monster.race")}
         id=""
     
       >

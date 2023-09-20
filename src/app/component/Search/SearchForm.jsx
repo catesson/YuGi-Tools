@@ -17,6 +17,7 @@ export function SearchForm() {
     for (const key of params.keys()) {
       keyParams.push(key);
     }
+    console.log(keyParams);
     for (const key of keyParams) {
       params.delete(key);
     }
@@ -29,22 +30,22 @@ export function SearchForm() {
 
   const onSubmit = (data) => {
     event.preventDefault();
+    resetParams();
     console.log(data);
     console.log(searchFramType);
-
+    const searchData = data[searchFramType];
     //pour chaque données dans les champ du formulaires j'ajoute des params
-    for (const cle in data) {
-      if (data.hasOwnProperty(cle)) {
-        if (cle != "race") {
-          params.set(cle, data[cle]);
-        } else {
-          const { race } = { ...data };
-          
-          params.set(cle, race[searchFramType] ? race[searchFramType] : "" );
-        }
+    for (const cle in searchData) {
+      if (searchData.hasOwnProperty(cle)) {
+        params.set(cle, searchData[cle]);
       }
     }
-    params.set("frameType", searchFramType)
+    if (searchFramType == "Spell" || searchFramType == "Trap") {
+      params.set("frameType", searchFramType);
+    } else if (searchFramType == "Monster") {
+      params.set("type", searchFramType);
+    }
+
     search();
   };
   return (
@@ -63,7 +64,6 @@ export function SearchForm() {
           onClick={(event) => {
             event.preventDefault();
 
-            resetParams();
             if (searchFramType == "Monster") {
               setSearchFramType("");
             } else {
@@ -77,7 +77,7 @@ export function SearchForm() {
         <button
           onClick={(event) => {
             event.preventDefault();
-            resetParams();
+
             if (searchFramType == "Spell") {
               setSearchFramType("");
             } else {
@@ -90,7 +90,7 @@ export function SearchForm() {
         <button
           onClick={(event) => {
             event.preventDefault();
-            resetParams();
+
             if (searchFramType == "Trap") {
               setSearchFramType("");
             } else {
@@ -103,9 +103,9 @@ export function SearchForm() {
       </div>
 
       <MonsterSearch
-          className={searchFramType == "Monster" ? "" : "hidden"}
-          register={register}
-        />
+        className={searchFramType == "Monster" ? "" : "hidden"}
+        register={register}
+      />
       <MagicSearch
         className={searchFramType == "Spell" ? "" : "hidden"}
         register={register}
