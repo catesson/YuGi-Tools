@@ -1,5 +1,4 @@
 
-import { useForm } from "react-hook-form"
 import { useContext, useState } from "react";
 import { SearchContext } from "./SearchContext";
 

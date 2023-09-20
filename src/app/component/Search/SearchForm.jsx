@@ -49,16 +49,16 @@ export function SearchForm() {
   };
   return (
     <form
-      className="flex flex-col gap-y-3 flex-wrap searchForm justify-center w-full sm:w-2/3"
+      className="flex flex-col gap-y-3 flex-wrap searchForm justify-center items-center w-full sm:w-2/3"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="flex flex-row justify-center ">
+      <div className="flex flex-row justify-between lg:w-2/4 sm:w-full w-10/12 ">
         <input id="name" {...register("name")} placeholder="Your search" />
         <button type="submit" className={searchFramType == "" ? "" : "hidden"}>
           submit
         </button>
       </div>
-      <div className="flex flex-row justify-between w-full">
+      <div className="flex flex-row justify-between lg:w-2/4 sm:w-full w-10/12 px-2">
         <button
           onClick={(event) => {
             event.preventDefault();
@@ -102,9 +102,10 @@ export function SearchForm() {
         </button>
       </div>
 
-      {/* <MonsterSearch
+      <MonsterSearch
           className={searchFramType == "Monster" ? "" : "hidden"}
-        />*/}
+          register={register}
+        />
       <MagicSearch
         className={searchFramType == "Spell" ? "" : "hidden"}
         register={register}
