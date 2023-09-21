@@ -4,7 +4,9 @@
 
 .searchForm input, .searchForm select {
     @apply text-red-900;
-    @apply p-2;
+    @apply py-2;
+    @apply pl-2;
+    @apply pr-5;
     @apply border-red-900;
     @apply border-solid;
     @apply border-2;
@@ -12,8 +14,7 @@
     min-width: 150px;
   }
   .searchForm #name{
-    @apply w-64;
-    @apply sm:w-2/3;
+    @apply w-full;
   }
   .magicSearch, .monsterSearch, .trapSearch{
     @apply flex;

@@ -1,3 +1,5 @@
+
+
 //consulte la banlist et en affiche le contenu
 export function BanlistInfo({banlist}) {
       
