@@ -10,6 +10,9 @@ export default async function pageCardId({ params }) {
   
   // donne la couleur à carré réprésentant la carte 
   switch (card.frameType.toLowerCase()) {
+    case "skill":
+      color = "#0021CF";
+      break;
     case "link":
       color = "#0021CF";
       break;
@@ -32,7 +35,7 @@ export default async function pageCardId({ params }) {
       color = "#E0DD03";
       break;
     case "trap":
-      color = "#C6006F";
+      color = "#81044a";
       break;
     case "spell":
       color = "#007504";

@@ -16,7 +16,7 @@ export function MonsterSearch({className, register}) {
       })
    
   return (
-    <div className={`monsterSearch ${className} f`}>
+    <div className={`monsterSearch ${className} `}>
       <input
         type="number"
         placeholder="Level"
@@ -38,7 +38,7 @@ export function MonsterSearch({className, register}) {
         <option value="" placeholder="type"></option>
         {SelectMonsterRace}
       </select>{" "}
-      <button type="submit" >Submit</button>
+     
     </div>
   );
 }

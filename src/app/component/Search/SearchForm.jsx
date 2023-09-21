@@ -10,7 +10,7 @@ import "@/app/styles/form.css";
 export function SearchForm() {
   const { search, params } = useContext(SearchContext);
   const [searchFramType, setSearchFramType] = useState("");
-
+  const minCssContentForm = " lg:w-2/4 sm:w-full w-10/12 "
   const resetParams = () => {
     const keyParams = [];
     //reset des paramètre en 2 boucle car ne supprime que le premier params si je le fais dans la même boucle.
@@ -33,34 +33,32 @@ export function SearchForm() {
     resetParams();
     console.log(data);
     console.log(searchFramType);
+    params.set("name", data["name"]);
     const searchData = data[searchFramType];
     //pour chaque données dans les champ du formulaires j'ajoute des params
     for (const cle in searchData) {
       if (searchData.hasOwnProperty(cle)) {
         params.set(cle, searchData[cle]);
-      }
-    }
-    if (searchFramType == "Spell" || searchFramType == "Trap") {
-      params.set("frameType", searchFramType);
-    } else if (searchFramType == "Monster") {
+      }};
+    if (searchFramType == "Monster") {
       params.set("type", searchFramType);
-    }
+    }    
+    else {
+      params.set("frameType", searchFramType);
+    } 
 
     search();
-  };
+  
+}
   return (
     <form
       className="flex flex-col gap-y-3 flex-wrap searchForm justify-center items-center w-full sm:w-2/3"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="flex flex-row justify-between lg:w-2/4 sm:w-full w-10/12 ">
-        <input id="name" {...register("name")} placeholder="Your search" />
-        <button type="submit" className={searchFramType == "" ? "" : "hidden"}>
-          submit
-        </button>
-      </div>
-      <div className="flex flex-row justify-between lg:w-2/4 sm:w-full w-10/12 px-2">
-        <button
+      
+      <div className={`flex flex-row justify-between px-2 ${minCssContentForm}`}>
+        <button type="button"
+        className={`hover-onglet Monster rounded-md  px-3 ${searchFramType == "Monster" ? "hover-onglet--active" : ""}`}
           onClick={(event) => {
             event.preventDefault();
 
@@ -74,7 +72,9 @@ export function SearchForm() {
           Monster
         </button>
 
-        <button
+        <button 
+        type="button"
+        className={`hover-onglet Spell rounded-md px-3 ${searchFramType == "Spell" ? "hover-onglet--active" : ""}`}
           onClick={(event) => {
             event.preventDefault();
 
@@ -88,6 +88,8 @@ export function SearchForm() {
           Spell{" "}
         </button>
         <button
+        type="button"
+        className={`hover-onglet Trap rounded-md py-1 px-3 ${searchFramType == "Trap" ? "hover-onglet--active" : ""}`}
           onClick={(event) => {
             event.preventDefault();
 
@@ -100,20 +102,41 @@ export function SearchForm() {
         >
           Trap{" "}
         </button>
+        <button
+        type="button"
+        className={`hover-onglet Skill rounded-md px-3 ${searchFramType == "Skill" ? "hover-onglet--active" : ""}`}
+          onClick={(event) => {
+            event.preventDefault();
+
+            if (searchFramType == "Skill") {
+              setSearchFramType("");
+            } else {
+              setSearchFramType("Skill");
+            }
+          }}
+        >
+          Skill{" "}
+        </button>
       </div>
 
       <MonsterSearch
-        className={searchFramType == "Monster" ? "" : "hidden"}
+        className={`${searchFramType == "Monster" ? "" : "hidden"}`}
         register={register}
       />
       <MagicSearch
-        className={searchFramType == "Spell" ? "" : "hidden"}
+        className={`${searchFramType == "Spell" ? "" : "hidden"} ${minCssContentForm}`}
         register={register}
       />
       <TrapSearch
-        className={searchFramType == "Trap" ? "" : "hidden"}
+        className={`${searchFramType == "Trap" ? "" : "hidden"} ${minCssContentForm}`}
         register={register}
       />
+      <div className={`flex flex-row justify-between ${minCssContentForm}`}>
+        <input id="name" {...register("name")} placeholder="Your search" />
+        <button type="submit" className={searchFramType == "" ? "" : ""}>
+          submit
+        </button>
+      </div>
     </form>
   );
 }
