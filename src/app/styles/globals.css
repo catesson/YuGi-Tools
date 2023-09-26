@@ -49,7 +49,25 @@ h2{
   transition: height 0.3s ease;
 }
 
-
+.btnCalculator-basic{
+  @apply w-12;
+  @apply h-12;
+  @apply md:w-16;
+  @apply md:h-16;
+}
+.btnCalculator-large{
+  @apply w-40;
+  @apply h-12;
+  @apply md:w-52;
+  @apply md:h-16;
+}
+.btnCalculator-haut{
+  @apply w-16;
+  @apply h-16;
+  @apply md:w-24;
+  @apply md:h-32;
+  @apply text-7xl;
+}
 .btnCalculator{
   @apply border-4;
   @apply  flex;
@@ -58,10 +76,11 @@ h2{
   @apply  border-red-900 ;
   @apply rounded-xl;
   @apply  text-red-900;
-  @apply  text-3xl;
   @apply  font-bold;
   @apply  active:bg-red-900;
-  @apply  active:text-white;
+  @apply  active:text-white; 
+  @apply text-xl;
+  @apply  md:text-3xl;
 }
 
 .btnCalculator-active{

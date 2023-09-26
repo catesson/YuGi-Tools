@@ -115,7 +115,7 @@ setCurrentPlayer("");
   return (
    
      <div className="flex flex-col items-center">
-      <div className="flex flex-row justify-center gap-5">
+      <div className="flex flex-row justify-center gap-2 md:gap-5">
         <LifePoint
           onClick={() => {
             handelClickPlayerA();
@@ -141,23 +141,26 @@ setCurrentPlayer("");
           }
         />
       </div>
-      <div className="flex flex-row gap-x-2">
+      <div className="flex flex-row gap-2">
+     
         <div className="flex flex-col gap-1">
           <InputCalculator  value={calculatorValue} />
           <div
-            className={`flex flex-row justify-center gap-3 ${
+            className={`flex flex-row justify-between md:justify-center md:gap-3 ${
               currentPlayer && calculatorValue ? "" : ""
             }`}
           >
-            <BigBtnCalculator
+            <BtnCalculator
               value={"+"}
+              className={"btnCalculator-haut"}
               onClick={(event) =>
                 handelClickCalculatorSum(currentPlayer, calculatorValue)
               }
               keyCode={"num_add"}
             />
-            <BigBtnCalculator
+            <BtnCalculator
               value={"-"}
+              className={"btnCalculator-haut"}
               onClick={(event) =>
                 handelClickCalculatorSoustract(
          
@@ -168,76 +171,92 @@ setCurrentPlayer("");
               keyCode={"num_subtract"}
             />
           </div>
+          <BtnCalculator
+            value={"Del"}
+            className={"btnCalculator-large"}
+            onClick={() => handelClickDel()}
+            keyCode={"backspace"}
+          />
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-row gap-x-2">
+        <div className="flex flex-col gap-2">
           <BtnCalculator
             value={1}
+            className={"btnCalculator-basic"}
             onClick={(event) => handelClickCalculatorBtn("1")}
             keyCode={"num_1,1"}
             
           />
           <BtnCalculator
             value={4}
+            className={"btnCalculator-basic"}
             onClick={(event) => handelClickCalculatorBtn("4")}
             keyCode={"num_4,4"}
           />
           <BtnCalculator
             value={7}
+            className={"btnCalculator-basic"}
             onClick={(event) => handelClickCalculatorBtn("7")}
             keyCode={"num_7,7"}
           />
           <BtnCalculator
             value={"0"}
+            className={"btnCalculator-basic"}
             onClick={(event) => handelClickCalculatorBtn("0")}
             keyCode={"num_0,0"}
           />
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           <BtnCalculator
             value={2}
+            className={"btnCalculator-basic"}
             onClick={(event) => handelClickCalculatorBtn("2")}
             keyCode={"num_2,2"}
           />
           <BtnCalculator
             value={5}
+            className={"btnCalculator-basic"}
             onClick={(event) => handelClickCalculatorBtn("5")}
             keyCode={"num_5,5"}
           />
           <BtnCalculator
             value={8}
+            className={"btnCalculator-basic"}
             onClick={(event) => handelClickCalculatorBtn("8")}
             keyCode={"num_8,8"}
           />
           <BtnCalculator
             value={"00"}
+            className={"btnCalculator-basic"}
             onClick={(event) => handelClickCalculatorBtn("00")}
           />
         </div>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           <BtnCalculator
             value={3}
+            className={"btnCalculator-basic"}
             onClick={(event) => handelClickCalculatorBtn("3")}
             keyCode={"num_3,3"}
           />
           <BtnCalculator
             value={6}
+            className={"btnCalculator-basic"}
             onClick={(event) => handelClickCalculatorBtn("6")}
             keyCode={"num_6,6"}
           />
           <BtnCalculator
             value={9}
+            className={"btnCalculator-basic"}
             onClick={(event) => handelClickCalculatorBtn("9")}
             keyCode={"num_9,9"}
           />
           <BtnCalculator
             value={"000"}
+            className={"btnCalculator-basic"}
             onClick={(event) => handelClickCalculatorBtn("000")}
           />
-          <BtnCalculator
-            value={"Delete"}
-            onClick={() => handelClickDel()}
-            keyCode={"backspace"}
-          />
+         
+        </div>
         </div>
       </div>
       <FlipCoin />

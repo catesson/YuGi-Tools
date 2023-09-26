@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import hotkeys from "hotkeys-js";
-import { Actor } from "next/font/google";
+import "@/app/styles/globals.css"
 
-export function BtnCalculator({ value, onClick, keyCode }) {
+export function BtnCalculator({ value, onClick, keyCode, className }) {
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export function BtnCalculator({ value, onClick, keyCode }) {
   return (
     <button
     data-test-id={"BtnCalculator"+value}
-      className={`btnCalculator w-16 h-16 ${ active ? "btnCalculator-active" : ""}` }
+      className={`btnCalculator ${ active ? "btnCalculator-active" : ""} ${className}` }
       //onClick correspond au handelClickCalculatorBtn de page.jsx
       onClick={onClick}
       
