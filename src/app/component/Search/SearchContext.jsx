@@ -20,6 +20,7 @@ export function SearchContextProvider({ children }) {
   const [attribute, setAttribute] = useState([]);
   const [magicRace, setMagicRace] = useState([]);
   const [trapRace, setTrapRace] = useState([]);
+  const [frameTypeMonster, setFframeTypeMonster] = useState([]);
   //intéroge la base de données pour récupérer les cartes
   const search = useCallback(async () => {
     try {
@@ -28,11 +29,13 @@ export function SearchContextProvider({ children }) {
       //charge les filtre de recherche si ces dernier ne sont pas déja chargé
       if (monsterRace.length == 0 || attribute.length == 0) {
         console.log('je charge')
-        const { monsterRace, attribute, magicRace, trapRace } = await getFilter();
+        const { monsterRace, attribute, magicRace, trapRace, frameTypeMonster } = await getFilter();
+        console.log(frameTypeMonster)
         setMagicRace(magicRace);
         setTrapRace(trapRace);
         setAttribute(attribute);
         setRace(monsterRace);
+        setFframeTypeMonster(frameTypeMonster)
       }
       setAllCards(cards);
       setLoading("hidden");
@@ -61,6 +64,7 @@ export function SearchContextProvider({ children }) {
         magicRace,
         trapRace,
         search,
+        frameTypeMonster,
       }}
     >
       {children}

@@ -11,13 +11,17 @@ export function MagicSearch({className, register}) {
    
   return (
     <div className={`${className} magicSearch`}>
+      <div className="label-input">
+        <label htmlFor="Spell.race">Spell Type</label>
       <select
+      id="Spell.race"
         {...register("Spell.race")}
       >
         <option value=""></option>
         {SelectMagicRace}
-      </select>{" "}
-      <button type="submit">Submit</button>
+      </select>
+      </div>
+    
     </div>
   );
 }

@@ -14,14 +14,15 @@ export function TrapSearch({ className, register }) {
   });
 
   return (
-    <div
-      className={`${className} trapSearch w-10/12 lg:w-2/4 sm:w-full`}
-    >
-      <select {...register("Trap.race")}>
-        <option value=""></option>
-        {SelectTrapRace}
-      </select>{" "}
-      <button type="submit">Submit</button>
+    <div className={`${className} trapSearch w-10/12 lg:w-2/4 sm:w-full`}>
+      <div className="label-input">
+        <label htmlFor="Trap.race">Trap Type</label>
+        <select id="Trap.race"
+        {...register("Trap.race")}>
+          <option value=""></option>
+          {SelectTrapRace}
+        </select>
+      </div>
     </div>
   );
 }

@@ -4,6 +4,7 @@
 
 .searchForm input, .searchForm select {
     @apply text-red-900;
+    @apply text-sm;
     @apply py-2;
     @apply pl-2;
     @apply pr-5;
@@ -17,7 +18,7 @@
     @apply rounded-xl;
     @apply focus:shadow-none;
     @apply focus:border-red-900;
-    min-width: 150px;
+    @apply w-40
   }
   .searchForm #name{
     @apply w-full;
@@ -25,7 +26,8 @@
    .monsterSearch, .magicSearch, .trapSearch{
     @apply flex;
     @apply flex-wrap;
-    @apply justify-between;
+    @apply justify-center;
+    @apply gap-x-4
 
   }.monsterSearch{
     @apply w-full;
@@ -37,6 +39,15 @@
     @apply sm:w-full;
    
   }
+  .searchForm label{
+    @apply text-sm;
+    @apply text-red-900;
+    @apply text-opacity-80
+  }
+  .label-input{
+    @apply flex;
+    @apply flex-col;
+  }
 
   .hover-onglet{
     
@@ -44,6 +55,7 @@
       background-size: 0% 100%;
       background-repeat: no-repeat;
       transition: background-size 0.5s;
+      border: solid 1px;
     
   }
   .hover-onglet::before{opacity: 0.5;}
