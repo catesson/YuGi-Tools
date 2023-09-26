@@ -27,7 +27,7 @@
     @apply flex;
     @apply flex-wrap;
     @apply justify-center;
-    @apply gap-x-4
+    @apply gap-4
 
   }.monsterSearch{
     @apply w-full;

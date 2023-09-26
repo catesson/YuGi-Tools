@@ -48,11 +48,11 @@ export function MonsterSearch({ className, register }) {
         />
       </div>
       <div className="label-input">
-        <label htmlFor="Monster.Categories">Cards Type</label>
+        <label htmlFor="Monster.frameType">Cards Type</label>
         <select
-          {...register("Monster.Categories")}
-          id="Monster.Categories"
-          placeholder="Categories"
+          {...register("Monster.frameType")}
+          id="Monster.frameType"
+          placeholder="Cards Type"
         >
           <option value=""></option>
           {SelectMonsterFrameType}
