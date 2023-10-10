@@ -11,7 +11,7 @@ export function CardResult() {
   
   const {allCards} = useContext(SearchContext)
   if (allCards.length != 0){//affiche toutes les carte retourné
-  const cards = allCards !== [] ? allCards.map((card) => {
+  const cards = allCards != [] ? allCards.map((card) => {
     return (
       <LittleCard
         name={card.name}
