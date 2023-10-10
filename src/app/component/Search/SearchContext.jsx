@@ -25,12 +25,10 @@ export function SearchContextProvider({ children }) {
   const search = useCallback(async () => {
     try {
       const { cards, maxPage } = await getAllCard(params);
-
+     
       //charge les filtre de recherche si ces dernier ne sont pas déja chargé
       if (monsterRace.length == 0 || attribute.length == 0) {
-        console.log('je charge')
         const { monsterRace, attribute, magicRace, trapRace, frameTypeMonster } = await getFilter();
-        console.log(frameTypeMonster)
         setMagicRace(magicRace);
         setTrapRace(trapRace);
         setAttribute(attribute);
@@ -38,11 +36,13 @@ export function SearchContextProvider({ children }) {
         setFframeTypeMonster(frameTypeMonster)
       }
       setAllCards(cards);
+      console.log(allCards)
       setLoading("hidden");
       setMaxPage(maxPage);
 
       setCurrentPage(params.get("page") ? params.get("page") : 1);
     } catch (error) {
+      console.log(error)
       setAllCards([]);
       setLoading("hidden");
     }

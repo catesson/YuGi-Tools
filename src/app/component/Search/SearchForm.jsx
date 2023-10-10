@@ -28,7 +28,7 @@ export function SearchForm() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = (data, event) => {
     event.preventDefault();
     resetParams();
     console.log(data);
@@ -59,6 +59,7 @@ export function SearchForm() {
       >
         <button
           type="button"
+          name="MonsterOnglet"
           className={`hover-onglet Monster rounded-md  px-3 ${
             searchFramType == "Monster" ? "hover-onglet--active" : ""
           }`}
@@ -148,7 +149,7 @@ export function SearchForm() {
         <label htmlFor="name">Your search</label>
         <div className={`flex flex-row justify-between w-full `}>
           <input id="name" {...register("name")} placeholder="Your search" />
-          <button type="submit" className={searchFramType == "" ? "" : ""}>
+          <button type="submit" name="submitSearchForm" className={searchFramType == "" ? "" : ""}>
             submit
           </button>
         </div>

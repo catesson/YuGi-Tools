@@ -33,6 +33,7 @@ export function MonsterSearch({ className, register }) {
         <label htmlFor="Monster.level">Level / Rank</label>
         <input
         id="Monster.level"
+        data-test-id="MonsterLevel"
           type="number"
           placeholder="Level/Rank"
           {...register("Monster.level", { min: 0, max: 12 })}
@@ -63,6 +64,7 @@ export function MonsterSearch({ className, register }) {
           {...register("Monster.attribute")}
           id="Monster.attribute"
           placeholder="Attribute"
+          data-test-id="Attribute"
         >
           <option value="">Attribute</option>
           {monsterAttributeOptions}
@@ -70,7 +72,7 @@ export function MonsterSearch({ className, register }) {
       </div>
       <div className="label-input">
         <label htmlFor="Monster.race">Monster Type</label>
-        <select {...register("Monster.race")} id="Monster.race">
+        <select {...register("Monster.race")} data-test-id="Race" id="Monster.race">
           <option value="" placeholder="type">Monster Type</option>
           {monsterRaceOptions}
         </select>

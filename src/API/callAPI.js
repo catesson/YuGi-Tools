@@ -20,6 +20,7 @@ console.log(cards)
       method: "POST",
       headers: { "Content-Type": "application/json" },
     });
+    
     if (!response.ok) {
       window.alert("Aucune carte n'a été trouvé");
       
@@ -27,7 +28,7 @@ console.log(cards)
     } else {
       //contient la liste de toutes les cartes et le nombre maximum de page {cards : [cards], maxPage : page}
       const JsonResponse = await response.json();
-
+      console.log(JsonResponse)
       return JsonResponse;
     }
   }
@@ -49,7 +50,7 @@ export async function getFilter() {
   } else {
     //contient la liste de toutes les cartes et le nombre maximum de page {cards : [cards], maxPage : page}
     const JsonResponse = await response.json();
-  
+    console.log(JsonResponse)
 
     return JsonResponse;
   }
