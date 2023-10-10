@@ -21,7 +21,7 @@ console.log(cards)
       headers: { "Content-Type": "application/json" },
     });
     if (!response.ok) {
-      window.alert("Mauvaise réponse du réseau");
+      window.alert("Aucune carte n'a été trouvé");
       
       return 
     } else {

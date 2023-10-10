@@ -5,21 +5,21 @@ export function MonsterSearch({ className, register }) {
   const { monsterRace, attribute, frameTypeMonster } =
     useContext(SearchContext);
 
-  const SelectMonsterAttribute = attribute.map((element, index) => {
+  const monsterAttributeOptions = attribute.map((element, index) => {
     return (
       <option key={index} value={`${element._id}`}>
         {element._id}
       </option>
     );
   });
-  const SelectMonsterRace = monsterRace.map((element, index) => {
+  const monsterRaceOptions = monsterRace.map((element, index) => {
     return (
       <option key={index} value={`${element._id}`}>
         {element._id}
       </option>
     );
   });
-  const SelectMonsterFrameType = frameTypeMonster.map((element, index) => {
+  const monsterFrameTypeOptions = frameTypeMonster.map((element, index) => {
     return (
       <option key={index} value={`${element._id}`}>
         {element._id}
@@ -52,10 +52,9 @@ export function MonsterSearch({ className, register }) {
         <select
           {...register("Monster.frameType")}
           id="Monster.frameType"
-          placeholder="Cards Type"
         >
-          <option value=""></option>
-          {SelectMonsterFrameType}
+          <option value="">Card Type</option>
+          {monsterFrameTypeOptions}
         </select>
       </div>
       <div className="label-input">
@@ -65,15 +64,15 @@ export function MonsterSearch({ className, register }) {
           id="Monster.attribute"
           placeholder="Attribute"
         >
-          <option value=""></option>
-          {SelectMonsterAttribute}
+          <option value="">Attribute</option>
+          {monsterAttributeOptions}
         </select>
       </div>
       <div className="label-input">
         <label htmlFor="Monster.race">Monster Type</label>
         <select {...register("Monster.race")} id="Monster.race">
-          <option value="" placeholder="type"></option>
-          {SelectMonsterRace}
+          <option value="" placeholder="type">Monster Type</option>
+          {monsterRaceOptions}
         </select>
       </div>
     </div>

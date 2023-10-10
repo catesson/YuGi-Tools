@@ -88,3 +88,17 @@ h2{
   @apply  text-white;
 }
 
+.connectBtn p,
+.profilBtn p{
+  @apply overflow-hidden;
+  @apply w-0;
+  transition: all 0.5s ease-in-out 
+}
+
+.connectBtn:hover p{
+  width:90px;
+}
+
+.profilBtn:hover p{
+  @apply w-14;
+}
