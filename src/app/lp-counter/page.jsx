@@ -3,7 +3,6 @@ import { LifePoint } from "./component/LifePoint";
 import { FlipCoin } from "./component/FlipCoin";
 import { DieRoll } from "./component/DieRoll";
 import { BtnCalculator } from "./component/BtnClaculator";
-import { BigBtnCalculator } from "./component/BigBtnClaculator";
 import { InputCalculator } from "./component/InputCalculator";
 
 import hotkeys from "hotkeys-js";
