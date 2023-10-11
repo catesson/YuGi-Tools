@@ -1,9 +1,19 @@
-import Image from 'next/image'
-export function ProfilBtn({connected}) {
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setConnect } from "@/store/store";
+export function ProfilBtn() {
+  const userConnect = useSelector((state) => state.connect)
+  const dispatch = useDispatch()
+  console.log(userConnect)
+  
   const ProfilBtn = () => {
-    if (connected) {
+    const handleClick = (event) => {
+      dispatch(setConnect())
+    }
+    if (userConnect) {
       return (
         <div
+        onClick={handleClick}
           className={`connectBtn flex justify-center items-center h-11 bg-white rounded-full px-2`}
         >
           <p className="text-red-900 font-bold">Connexion</p>
@@ -18,6 +28,7 @@ export function ProfilBtn({connected}) {
     } else {
       return (
         <div
+        onClick={handleClick}
           className={`profilBtn flex justify-center items-center h-11 bg-red-900 border-solid border-4 rounded-full px-1`}
         >
           <p className="text-white font-bold">Profil</p>
