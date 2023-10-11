@@ -1,7 +1,7 @@
 import './styles/globals.css'
 import { Inter } from 'next/font/google'
 import { Header } from './component/layout/Header'
-
+import { ReduxProvider } from '@/store/provider'
 
 
 
@@ -15,8 +15,9 @@ export const metadata = {
 
 
 export default function RootLayout({ children }) {
+
   return (
-    
+   
     <html lang="fr">
     <head>
       <meta charSet="UTF-8" />
@@ -24,13 +25,15 @@ export default function RootLayout({ children }) {
       
       <title>{metadata.title}</title>
     </head>  
-    
+     <ReduxProvider>
     <body className='h-full min-h-screen w-screen'>
+     
       <Header />
  
       <div className='w-full m-auto '>{children}</div>
     
-    </body>
+    </body>  </ReduxProvider>
     </html>
+
   )
 }
