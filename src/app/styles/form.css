@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-.searchForm input, .searchForm select {
+.searchForm input, .searchForm select, .connectForm input {
     @apply text-red-900;
     @apply text-sm;
     @apply py-2;
@@ -20,6 +20,17 @@
     @apply focus:border-red-900;
     @apply w-40
   }
+
+  .connectForm input{
+    @apply w-full;
+  }
+  /* connetion form  */
+  .connectForm .label-input{
+    @apply w-5/6;
+    @apply md:w-1/2;
+  }
+
+ /* Search form*/
   .searchForm #name{
     @apply w-full;
   }
@@ -39,7 +50,8 @@
     @apply sm:w-full;
    
   }
-  .searchForm label{
+  .searchForm label, 
+  .connectForm label {
     @apply text-sm;
     @apply text-red-900;
     @apply text-opacity-80

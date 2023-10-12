@@ -17,8 +17,8 @@
   }
 }
 
-body{
-  min-width: 384px;;
+.minWidth{
+  min-width: 384px;
 }
 p {
   @apply text-sm ;

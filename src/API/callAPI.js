@@ -72,10 +72,33 @@ export async function getCard(id) {
     }
   );
   if (!response.ok) {
-    s;
     console.log("Mauvaise réponse du réseau");
   } else {
     const card = await response.json();
     return card;
   }
+}
+
+export async function userConnect(email, password){
+
+    const response = await fetch('http://localhost:3001/user/login', 
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body:JSON.stringify({
+        "email" : email,
+        "password" : password
+    })
+    })
+    const JsonResponse = await response.json();
+    if (!response.ok) {
+      throw new Error(JsonResponse.message)
+ 
+    }
+      // contient l'id de l'utilisateur ainsi que son token de connexion
+    
+    console.log(JsonResponse)
+
+    return JsonResponse;
+    
 }

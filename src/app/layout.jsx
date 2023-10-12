@@ -17,11 +17,11 @@ export default function RootLayout({ children }) {
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+        <meta name="viewport" content="height=device-height, initial-scale=1.0" />
         <title>{metadata.title}</title>
       </head>
 
-      <body className="h-full min-h-screen w-screen">
+      <body className="h-full min-h-screen w-screen minWidth">
         <ReduxProvider>
           <Header />
 
