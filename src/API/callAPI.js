@@ -1,8 +1,8 @@
 import { mocked } from "../unit/variable";
 import allCard from "../data/data.json";
+import { urlApi } from "../unit/variable";
 
 export async function getAllCard(params) {
-  console.log(mocked);
   if (mocked == true) {
     const url = params
     const cards = allCard.map((card) => {
@@ -14,9 +14,8 @@ export async function getAllCard(params) {
     return {cards, maxPage};
   } else {
     const url = params
-      ? `http://localhost:3001/cards?${params.toString()}`
-      : "http://localhost:3001/cards";
-      console.log(url)
+      ? `${urlApi}cards?${params.toString()}`
+      : `${urlApi}cards`;
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -41,7 +40,7 @@ export async function getFilter() {
     const race = ['warrior', "fairy"]
     return {attribute, race}
   } 
-  const response = await fetch("http://localhost:3001/cards/filter", {
+  const response = await fetch(`${urlApi}cards/filter`, {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   });
@@ -64,9 +63,9 @@ export async function getCard(id) {
     const card = allCard.find((card) => card.id == id);
     return card;
   }
+  console.log(`${urlApi}/card/${id}`)
   const response = await fetch(
-    `http://localhost:3001/cards/${id}`,
-    { next: { revalidate: 40 } },
+    `${urlApi}cards/${id}`,
     {
       method: "GET",
       headers: { "Content-Type": "application/json" },
@@ -82,7 +81,7 @@ export async function getCard(id) {
 
 export async function userConnect(email, password){
 
-    const response = await fetch('http://localhost:3001/user/login', 
+    const response = await fetch(`${urlApi}user/login`, 
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
