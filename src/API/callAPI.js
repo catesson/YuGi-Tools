@@ -63,7 +63,6 @@ export async function getCard(id) {
     const card = allCard.find((card) => card.id == id);
     return card;
   }
-  console.log(`${urlApi}/card/${id}`)
   const response = await fetch(
     `${urlApi}cards/${id}`,
     {

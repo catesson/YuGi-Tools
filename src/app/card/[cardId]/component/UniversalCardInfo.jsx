@@ -3,15 +3,15 @@ import { TypeCard } from "@/app/component/TypeCard";
 import { BanlistInfo } from "./BanlistInfo";
 //afficher les informations qui existe sur tout les types de carte
 export function UniversalCardInfo({card, color}) {
-    const archeType = card.archetype ? (
+    const archeType = card && card.archetype ? (
       <a href={`../cards?archetype=${card.archetype}`} className="my-1 text-sm  text-center md:text-base">
         Archetype : {card.archetype}
       </a>
-    ) : undefined;
-    const image = card.card_images[0];
+    ) : null;
+    const image = card && card.card_images[0]?  card.card_images[0] : null;
     
     console.log(card.banlist_info)
-    const banlist = card.banlist_info ? (
+    const banlist = card && card.banlist_info ? (
       <BanlistInfo banlist={card.banlist_info} />
     ) : (
       <p >Unbanned in OCG and TCG</p>
