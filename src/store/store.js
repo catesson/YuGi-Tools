@@ -52,7 +52,6 @@ const connectSlice = createSlice({
 });
 
 export const disconnect = createAction("disconnect");
-console.log(connectSlice.actions);
 export const { setConnect } = connectSlice.actions;
 export const { setToken } = tokenSlice.actions;
 export const { setUser } = userSlice.actions;

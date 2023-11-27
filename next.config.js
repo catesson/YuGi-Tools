@@ -1,7 +1,5 @@
+// Modifiez votre next.config.js pour retirer l'option expérimentale "images"
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-    // Ajoutez la propriété output avec la valeur 'export'
-    output: 'export',
-  };
-  
-  module.exports = nextConfig;
+const nextConfig = {};
+
+module.exports = nextConfig;

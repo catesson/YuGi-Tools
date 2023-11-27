@@ -2,14 +2,15 @@ import { mocked } from "../unit/variable";
 import allCard from "../data/data.json";
 
 export async function getAllCard(params) {
-  if (mocked) {
+  console.log(mocked);
+  if (mocked == true) {
     const url = params
     const cards = allCard.map((card) => {
       
             return card;
     }).slice(0,30)
     const maxPage = 12
-console.log(cards)
+  console.log(cards)
     return {cards, maxPage};
   } else {
     const url = params

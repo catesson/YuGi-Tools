@@ -5,7 +5,6 @@ export function ProfilBtn() {
   //recuper la propriétet connect du store global
   const userConnect = useSelector((state) => state.connect);
   const dispatch = useDispatch();
-  console.log(userConnect);
 
    const ProfilBtn = () => {
   //   const handleClick = (event) => {
