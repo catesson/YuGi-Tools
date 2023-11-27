@@ -102,3 +102,13 @@ h2{
 .profilBtn:hover p{
   @apply w-14;
 }
+.btnCancel{
+  @apply border-white;
+  @apply text-white;
+  @apply bg-red-900;
+}
+
+.btnValidation{
+  @apply border-white text-white bg-green-900;
+
+}

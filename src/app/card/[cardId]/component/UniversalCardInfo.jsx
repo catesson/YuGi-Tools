@@ -10,7 +10,7 @@ export function UniversalCardInfo({card, color}) {
     ) : undefined;
     const image = card.card_images[0];
     
-    
+    console.log(card.banlist_info)
     const banlist = card.banlist_info ? (
       <BanlistInfo banlist={card.banlist_info} />
     ) : (

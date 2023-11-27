@@ -2,6 +2,7 @@
 
 //consulte la banlist et en affiche le contenu
 export function BanlistInfo({banlist}) {
+  console.log(banlist);
       
     const banOcg = banlist.ban_ocg ? (
       <p > OCG : {banlist.ban_ocg}</p>
