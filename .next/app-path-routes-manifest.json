@@ -1,0 +1,7 @@
+{
+  "/page": "/",
+  "/cards/page": "/cards",
+  "/deck/page": "/deck",
+  "/lp-counter/page": "/lp-counter",
+  "/card/[cardId]/page": "/card/[cardId]"
+}
