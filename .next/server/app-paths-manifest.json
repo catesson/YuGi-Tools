@@ -1,7 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/cards/page": "app/cards/page.js",
-  "/deck/page": "app/deck/page.js",
-  "/lp-counter/page": "app/lp-counter/page.js",
-  "/card/[cardId]/page": "app/card/[cardId]/page.js"
-}
